@@ -1,0 +1,6 @@
+.poll-page {
+  background:
+    radial-gradient(ellipse at 14% 18%, rgb(225 217 198 / 55%), transparent 34%),
+    radial-gradient(ellipse at 88% 78%, rgb(213 224 213 / 65%), transparent 35%),
+    #f7f4ee;
+}
