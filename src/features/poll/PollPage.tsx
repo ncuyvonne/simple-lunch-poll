@@ -54,7 +54,7 @@ export default function PollPage() {
   return (
     <main className="poll-page min-h-screen px-5 py-12 sm:px-8 sm:py-20">
       <div className="mx-auto flex min-h-[70vh] max-w-5xl items-center justify-center">
-        <section className="w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-[0_28px_80px_-36px_rgba(67,51,30,0.35)] backdrop-blur">
+        <section className="poll-card w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/90 shadow-[0_28px_80px_-36px_rgba(67,51,30,0.35)] backdrop-blur">
           <div className="bg-[#263b32] px-8 pb-9 pt-10 text-white sm:px-12 sm:pt-12">
             <p className="mb-4 text-sm font-semibold tracking-[0.22em] text-[#d9bd8c]">TODAY’S TABLE</p>
             <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">今天午餐要吃什麼？</h1>
@@ -70,15 +70,15 @@ export default function PollPage() {
                 {poll.choices.map((choice) => (
                   <label
                     key={choice.id}
-                    className={`flex cursor-pointer items-center justify-between rounded-2xl border px-5 py-4 transition ${
+                    className={`poll-choice flex cursor-pointer items-center justify-between rounded-2xl border px-5 py-4 transition ${
                       selectedChoice === choice.id
                         ? "border-[#557765] bg-[#f0f5f1] ring-2 ring-[#557765]/15"
                         : "border-slate-200 bg-white hover:border-[#a6b8aa] hover:bg-[#fafbf9]"
                     }`}
                   >
-                    <span className="flex items-center gap-4">
+                    <span className="poll-choice-label flex min-w-0 items-center gap-3 sm:gap-4">
                       <input
-                        className="h-5 w-5 accent-[#557765]"
+                        className="h-5 w-5 shrink-0 accent-[#557765]"
                         type="radio"
                         name="choice"
                         value={choice.id}
@@ -90,7 +90,7 @@ export default function PollPage() {
                       />
                       <span className="text-lg font-semibold text-slate-800">{choice.label}</span>
                     </span>
-                    <span className="text-sm tabular-nums text-slate-500">
+                    <span className="poll-choice-count text-sm tabular-nums text-slate-500">
                       {choice.label}：{choice.voteCount} 票
                     </span>
                   </label>
@@ -112,7 +112,7 @@ export default function PollPage() {
 
           <div className="flex items-center justify-between border-t border-slate-100 px-8 py-5 text-xs text-slate-400 sm:px-12">
             <span>每次送出計一票</span>
-            <span>結果即時更新</span>
+            <span>投票後立即更新</span>
           </div>
         </section>
       </div>

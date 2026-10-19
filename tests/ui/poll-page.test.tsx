@@ -39,11 +39,14 @@ describe("lunch poll page", () => {
     render(<PollPage />);
 
     expect(await screen.findByRole("heading", { name: "今天午餐要吃什麼？" })).toBeTruthy();
+    expect(screen.getByText("投票後立即更新")).toBeTruthy();
     const choices = screen.getAllByRole("radio");
     expect(choices).toHaveLength(3);
     expect(choices.map((choice) => (choice as HTMLInputElement).value)).toEqual(["bento", "noodles", "salad"]);
 
     await user.click(screen.getByRole("radio", { name: /^沙拉/ }));
+    expect((screen.getByRole("radio", { name: /^沙拉/ }) as HTMLInputElement).checked).toBe(true);
+    expect(screen.getAllByRole("radio").filter((choice) => (choice as HTMLInputElement).checked)).toHaveLength(1);
     await user.click(screen.getByRole("button", { name: "送出投票" }));
 
     expect(await screen.findByText("便當：0 票")).toBeTruthy();
